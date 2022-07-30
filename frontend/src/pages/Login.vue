@@ -1,5 +1,7 @@
 <template>
-    
+    <form action="" method="post">
+        
+    </form>
 </template>
 
 

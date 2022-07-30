@@ -1,12 +1,4 @@
 <template>
-    <div>
-        <InputField 
-          label="name"
-          placeholder="Name"
-          type="text"
-          for="name"
-        />
-    </div>
 </template>
 
 <script>
