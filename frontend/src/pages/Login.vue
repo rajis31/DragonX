@@ -1,7 +1,5 @@
 <template>
-    <form action="" method="post">
-        
-    </form>
+    <p> This is login page  </p>
 </template>
 
 
