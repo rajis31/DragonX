@@ -53,8 +53,9 @@
           cursor-pointer
         "
         type="checkbox"
-        value=""
+        value="true"
         id="flexCheckDefault"
+        @change="handleRememberMe"
       />
       <label
         class="form-check-label inline-block text-gray-800"
@@ -75,6 +76,7 @@ export default {
     return {
       username: "",
       password: "",
+      rememberMe: false,
     }
   },
   components: {
@@ -82,11 +84,14 @@ export default {
   },
   methods: {
     handleUsername(e) {
-        console.log(e);
+        this.username = e.value;
     },
      handlePassword(e) {
-        console.log(e);
-    }
+        this.password = e.value;
+    },
+    handleRememberMe(e){
+      this.rememberMe = e.currentTarget.checked;
+    },
   }
 }
 </script>
