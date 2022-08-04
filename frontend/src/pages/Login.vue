@@ -1,5 +1,69 @@
 <template>
-    <p> This is login page  </p>
+  <form action="">
+    <font-awesome-icon icon="fa-solid fa-dragon" size="4x" />
+    <InputField
+      for="username"
+      label="Username"
+      type="text"
+      placeholder="Enter Username"
+      @input-username="handleUsername"
+    />
+    <InputField
+      for="password"
+      label="Password"
+      type="password"
+      placeholder="Enter Password"
+      @input-password="handlePassword"
+    />
+    <button
+      class="
+        bg-blue-500
+        hover:bg-blue-700
+        text-white
+        font-bold
+        py-2
+        px-4
+        rounded
+        mt-5
+      "
+      type="Submit"
+    >
+      Submit
+    </button>
+
+    <div>
+      <input
+        class="
+          form-check-input
+          appearance-none
+          h-4
+          w-4
+          border border-gray-300
+          rounded-sm
+          bg-white
+          checked:bg-blue-600 checked:border-blue-600
+          focus:outline-none
+          transition
+          duration-200
+          mt-1
+          align-top
+          bg-no-repeat bg-center bg-contain
+          float-left
+          mr-2
+          cursor-pointer
+        "
+        type="checkbox"
+        value=""
+        id="flexCheckDefault"
+      />
+      <label
+        class="form-check-label inline-block text-gray-800"
+        for="flexCheckDefault"
+      >
+        Remember Me
+      </label>
+    </div>
+  </form>
 </template>
 
 
@@ -7,8 +71,22 @@
 
 import InputField from "../components/InputField.vue";
 export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+    }
+  },
   components: {
     InputField: InputField,
+  },
+  methods: {
+    handleUsername(e) {
+        console.log(e);
+    },
+     handlePassword(e) {
+        console.log(e);
+    }
   }
 }
 </script>

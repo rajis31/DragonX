@@ -1,7 +1,16 @@
 <template>
-    <div>
-  <label
-      class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 text-left px-1"
+  <div>
+    <label
+      class="
+        block
+        uppercase
+        tracking-wide
+        text-gray-700 text-xs
+        font-bold
+        mb-2
+        text-left
+        px-1
+      "
       :for="for"
     >
       {{ label }}
@@ -23,15 +32,21 @@
       :type="type"
       :placeholder="placeholder"
       :name="for"
+      @input="handleValue"
     />
-    </div>
+  </div>
 </template>
 
 
 <script>
 export default {
-    props: ["for","label","type", "placeholder" ],
-    emits: ["returnValue"]
+  props: ["for", "label", "type", "placeholder"],
+  methods: {
+    handleValue(event) {
+      this.$emit("input-" + this.$props.for, 
+                 {name: this.$props.for, value: event.target.value});
+    }
+  }
 
 }
 </script>
