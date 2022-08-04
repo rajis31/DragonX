@@ -1,5 +1,6 @@
 <template>
-  <form action="">
+<div class="w-100 flex flex-col justify-center items-center">
+  <form class="max-w-[400px]" >
     <font-awesome-icon icon="fa-solid fa-dragon" size="4x" />
     <InputField
       for="username"
@@ -17,8 +18,8 @@
     />
     <button
       class="
-        bg-blue-500
-        hover:bg-blue-700
+        bg-slate-400
+        hover:bg-slate-800
         text-white
         font-bold
         py-2
@@ -65,6 +66,7 @@
       </label>
     </div>
   </form>
+</div>
 </template>
 
 
@@ -97,4 +99,7 @@ export default {
 </script>
 
 <style scoped>
+    .fa-dragon{
+      color: red;
+    }
 </style>
