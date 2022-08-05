@@ -8,6 +8,7 @@
         text-gray-700 text-xs
         font-bold
         mb-2
+        mt-2
         text-left
         px-1
       "
@@ -26,6 +27,7 @@
         rounded
         py-3
         px-4
+        my-2
         leading-tight
         focus:outline-none focus:bg-white focus:border-gray-500
       "
