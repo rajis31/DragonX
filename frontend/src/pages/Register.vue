@@ -12,6 +12,15 @@
         class="mx-auto block p-4"
       />
       <InputField
+        for="name"
+        label="Name"
+        type="text"
+        placeholder="Enter your Name"
+        @input-name="handleData"
+      />
+      <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
+
+      <InputField
         for="username"
         label="Username"
         type="text"
@@ -27,7 +36,20 @@
         placeholder="Enter Password"
         @input-password="handleData"
       />
-      <ErrorMessage msg="Please enter a password" v-show="errors.password" />
+      <ErrorMessage 
+            msg="Please enter a password atleast 8 characters long" 
+            v-show="errors.password" 
+       />
+
+      <InputField
+        for="confirm"
+        label="Confirm Password"
+        type="password"
+        placeholder="Confirm Password"
+        @input-confirm="handleData"
+      />
+      <ErrorMessage msg="Passwords do not match" v-show="errors.confirm" />
+
       <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
       <button
         class="
@@ -45,41 +67,8 @@
         Submit
       </button>
 
-      <div class="mt-4">
-        <input
-          class="
-            form-check-input
-            appearance-none
-            h-4
-            w-4
-            border border-gray-300
-            rounded-sm
-            bg-white
-            checked:bg-blue-600 checked:border-blue-600
-            focus:outline-none
-            transition
-            duration-200
-            mt-1
-            align-top
-            bg-no-repeat bg-center bg-contain
-            float-left
-            mr-2
-            cursor-pointer
-          "
-          type="checkbox"
-          value="true"
-          id="flexCheckDefault"
-          @change="handleRememberMe"
-        />
-        <label
-          class="form-check-label inline-block text-gray-800"
-          for="flexCheckDefault"
-        >
-          Remember Me
-        </label>
-      </div>
       <a
-        href="/register"
+        href="/login"
         class="
           text-center
           w-100
@@ -90,30 +79,11 @@
           font-medium
           text-blue-600
         "
-        >Register Here</a
+        >Login Here</a
       >
     </form>
 
-    <div
-      class="
-        bg-gray-400
-        border-l-4 border-gray-900
-        text-white
-        p-5
-        mt-5
-        relative
-      "
-      role="alert"
-      v-show="!cookieAcknowledged"
-      @click="handleCookie"
-    >
-      <font-awesome-icon
-        icon="fa-solid fa-xmark"
-        class="absolute cursor-pointer top-2 right-2"
-      />
-      <p class="font-bold">Cookie</p>
-      <p>This site uses cookies.</p>
-    </div>
+
   </div>
 </template>
 
@@ -130,10 +100,10 @@ export default {
       data: {
         username: "",
         password: "",
+        confirm: "",
+        name: "",
       },
-      rememberMe: false,
       errors: {},
-      cookieAcknowledged: false,
     }
   },
   components: {
@@ -150,21 +120,30 @@ export default {
     validate() {
       this.errors = {};
 
+      if (this.data.name === "") {
+        this.errors.name = "Error";
+      }
+
       if (this.data.username === "") {
-        this.errors.username = "Error"
+        this.errors.username = "Error";
       }
-      if (this.data.password === "") {
-        this.errors.password = "Error"
+      if (this.data.password.length < 8) {
+        this.errors.password = "Error";
       }
-      if (Object.keys(this.errors).length === 0) {
+
+      if(this.data.password !== this.data.confirm){
+        this.errors.confirm = "Error";
+      }  
+      if(Object.keys(this.errors).length === 0){
         this.handleSubmit();
       }
     },
     handleCookie() {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
+
     handleSubmit(){
-      // Axios logic goes here
+        // Axios logic goes here to submit data to backend
     }
   }
 }
