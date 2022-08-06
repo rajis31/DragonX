@@ -2,7 +2,10 @@
   <div
     class="w-100 h-screen flex flex-col justify-center items-center bg-gray-50"
   >
-    <form class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5">
+    <form
+      class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5"
+      @submit.prevent="validate"
+    >
       <font-awesome-icon
         icon="fa-solid fa-dragon"
         size="4x"
@@ -15,7 +18,7 @@
         placeholder="Enter Username"
         @input-username="handleUsername"
       />
-      <ErrorMessage msg="Please enter a Username" />
+      <ErrorMessage msg="Please enter a Username" v-show="errors.username" />
 
       <InputField
         for="password"
@@ -24,8 +27,8 @@
         placeholder="Enter Password"
         @input-password="handlePassword"
       />
-      <ErrorMessage msg="Please enter a password" />
-      <ErrorMessage msg="Username or Password is wrong" />
+      <ErrorMessage msg="Please enter a password" v-show="errors.password" />
+      <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
       <button
         class="
           bg-slate-400
@@ -75,7 +78,41 @@
           Remember Me
         </label>
       </div>
+      <a 
+        href="/register" 
+        class="
+            text-center 
+            w-100 block 
+            mt-5 
+            hover:underline 
+            cursor-pointer 
+            font-medium
+            text-blue-600	
+          "
+        >Register Here</a
+      >
     </form>
+
+    <div
+      class="
+        bg-gray-400
+        border-l-4 border-gray-900
+        text-white
+        p-4
+        mt-5
+        relative
+      "
+      role="alert"
+      v-show="!cookieAcknowledged"
+      @click="handleCookie"
+    >
+      <font-awesome-icon
+        icon="fa-solid fa-xmark"
+        class="absolute cursor-pointer top-2 right-2"
+      />
+      <p class="font-bold">Cookie</p>
+      <p>This site uses cookies.</p>
+    </div>
   </div>
 </template>
 
@@ -92,6 +129,8 @@ export default {
       username: "",
       password: "",
       rememberMe: false,
+      errors: {},
+      cookieAcknowledged: false,
     }
   },
   components: {
@@ -108,6 +147,23 @@ export default {
     handleRememberMe(e) {
       this.rememberMe = e.currentTarget.checked;
     },
+    validate() {
+      this.errors = {};
+
+      if (this.username === "") {
+        this.errors.username = "Error"
+      }
+      if (this.password === "") {
+        this.errors.password = "Error"
+      }
+      if (Object.keys(this.errors).length === 0) {
+        // Here the axios post request will go
+        console.log("Logged In Successfully")
+      }
+    },
+    handleCookie() {
+      this.cookieAcknowledged = !this.cookieAcknowledged;
+    }
   }
 }
 </script>

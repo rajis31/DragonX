@@ -4,10 +4,10 @@ import "./index.css";
 import store from "./store/store";
 import router from "./router/router";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faDragon } from '@fortawesome/free-solid-svg-icons';
+import { faDragon, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faDragon);
+library.add([faDragon, faXmark]);
 
 createApp(App)
     .use(store)
