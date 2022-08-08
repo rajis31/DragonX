@@ -48,12 +48,13 @@
         >Go to Login Page</a
       >
     </form>
-       <Notification
-        title="Successful"
-        msg="You should be receiving a password reset link in your email registered to this username
+    <Notification
+      title="Successful"
+      msg="You should be receiving a password reset link in your email registered to this username
              You will now be redirected back to the login page.
         "
-      />
+      v-show="successful"
+    />
   </div>
 </template>
 
@@ -71,6 +72,7 @@ export default {
     return {
       data: {
         username: "",
+        succssful: false,
       },
       errors: {},
     }
@@ -84,29 +86,17 @@ export default {
     handleData(e) {
       this.data[e.name] = e.value;
     },
-    handleRememberMe(e) {
-      this.rememberMe = e.currentTarget.checked;
-    },
     validate() {
       this.errors = {};
-
-      if (this.data.name === "") {
-        this.errors.name = "Error";
-      }
 
       if (this.data.username === "") {
         this.errors.username = "Error";
       }
-      if (this.data.password.length < 8) {
-        this.errors.password = "Error";
-      }
 
-      if (this.data.password !== this.data.confirm) {
-        this.errors.confirm = "Error";
-      }
-      if (Object.keys(this.errors).length === 0) {
+      if (Object.keys(errors).length === 0) {
         this.handleSubmit();
       }
+
     },
     handleCookie() {
       this.cookieAcknowledged = !this.cookieAcknowledged;
