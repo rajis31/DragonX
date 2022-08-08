@@ -13,9 +13,9 @@
         label="Username"
         type="text"
         placeholder="Enter your Username"
-        @input-name="handleData"
+        @input-username="handleData"
       />
-      <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
+      <ErrorMessage msg="Please enter your Username" v-show="errors.username" />
 
       <button
         class="
@@ -64,7 +64,7 @@
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
 import Notification1 from "../components/Notifications/Notification1.vue";
-
+import sleep from "../helpers/helpers";
 
 export default {
 
@@ -72,8 +72,8 @@ export default {
     return {
       data: {
         username: "",
-        succssful: false,
       },
+      successful: false,
       errors: {},
     }
   },
@@ -93,7 +93,8 @@ export default {
         this.errors.username = "Error";
       }
 
-      if (Object.keys(errors).length === 0) {
+      if (Object.keys(this.errors).length === 0) {
+        this.succssful = true;
         this.handleSubmit();
       }
 
@@ -102,8 +103,11 @@ export default {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
 
-    handleSubmit() {
+    async handleSubmit() {
       // Axios logic goes here to submit data to backend
+      this.successful = true
+      await sleep(3000);
+      this.$router.push({ "name": "login" });
     }
   }
 }
