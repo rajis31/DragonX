@@ -3,49 +3,20 @@
     class="w-100 h-screen flex flex-col justify-center items-center bg-gray-50"
   >
     <form
-      class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5"
+      class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5 relative"
       @submit.prevent="validate"
     >
-      <InputField
-        for="name"
-        label="Name"
-        type="text"
-        placeholder="Enter your Name"
-        @input-name="handleData"
-      />
-      <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
+      <div class="bg-red-600 form__line"></div>
 
       <InputField
         for="username"
         label="Username"
         type="text"
-        placeholder="Enter Username"
-        @input-username="handleData"
+        placeholder="Enter your Username"
+        @input-name="handleData"
       />
-      <ErrorMessage msg="Please enter a Username" v-show="errors.username" />
+      <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
 
-      <InputField
-        for="password"
-        label="Password"
-        type="password"
-        placeholder="Enter Password"
-        @input-password="handleData"
-      />
-      <ErrorMessage 
-            msg="Please enter a password atleast 8 characters long" 
-            v-show="errors.password" 
-       />
-
-      <InputField
-        for="confirm"
-        label="Confirm Password"
-        type="password"
-        placeholder="Confirm Password"
-        @input-confirm="handleData"
-      />
-      <ErrorMessage msg="Passwords do not match" v-show="errors.confirm" />
-
-      <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
       <button
         class="
           bg-slate-400
@@ -74,9 +45,15 @@
           font-medium
           text-blue-600
         "
-        >Go back to Login Page</a
+        >Go to Login Page</a
       >
     </form>
+       <Notification
+        title="Successful"
+        msg="You should be receiving a password reset link in your email registered to this username
+             You will now be redirected back to the login page.
+        "
+      />
   </div>
 </template>
 
@@ -85,16 +62,15 @@
 
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
+import Notification1 from "../components/Notifications/Notification1.vue";
 
 
 export default {
+
   data() {
     return {
       data: {
         username: "",
-        password: "",
-        confirm: "",
-        name: "",
       },
       errors: {},
     }
@@ -102,6 +78,7 @@ export default {
   components: {
     InputField: InputField,
     ErrorMessage: ErrorMessage,
+    Notification: Notification1,
   },
   methods: {
     handleData(e) {
@@ -124,10 +101,10 @@ export default {
         this.errors.password = "Error";
       }
 
-      if(this.data.password !== this.data.confirm){
+      if (this.data.password !== this.data.confirm) {
         this.errors.confirm = "Error";
-      }  
-      if(Object.keys(this.errors).length === 0){
+      }
+      if (Object.keys(this.errors).length === 0) {
         this.handleSubmit();
       }
     },
@@ -135,8 +112,8 @@ export default {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
 
-    handleSubmit(){
-        // Axios logic goes here to submit data to backend
+    handleSubmit() {
+      // Axios logic goes here to submit data to backend
     }
   }
 }
