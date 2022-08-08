@@ -1,11 +1,20 @@
 <template>
   <div
-    class="w-100 h-screen flex flex-col justify-center items-center bg-gray-50"
+    class="
+      w-100
+      h-100
+      min-h-screen
+      flex flex-col
+      justify-center
+      items-center
+      bg-gray-50
+    "
   >
     <form
-      class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5"
+      class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5 relative"
       @submit.prevent="validate"
     >
+      <div class="bg-blue-600 form__line"></div>
       <font-awesome-icon
         icon="fa-solid fa-dragon"
         size="4x"
@@ -21,6 +30,19 @@
       <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
 
       <InputField
+        for="email"
+        label="Email"
+        type="email"
+        placeholder="Enter Email"
+        @input-username="handleData"
+      />
+      <ErrorMessage msg="Please enter an Email" v-show="errors.email" />
+      <ErrorMessage
+        msg="Email already exists. Please use another one"
+        v-show="errors.email_exists"
+      />
+
+      <InputField
         for="username"
         label="Username"
         type="text"
@@ -28,6 +50,10 @@
         @input-username="handleData"
       />
       <ErrorMessage msg="Please enter a Username" v-show="errors.username" />
+      <ErrorMessage
+        msg="User already exists. Please use anotherone"
+        v-show="errors.username_exists"
+      />
 
       <InputField
         for="password"
@@ -36,10 +62,10 @@
         placeholder="Enter Password"
         @input-password="handleData"
       />
-      <ErrorMessage 
-            msg="Please enter a password atleast 8 characters long" 
-            v-show="errors.password" 
-       />
+      <ErrorMessage
+        msg="Please enter a password atleast 8 characters long"
+        v-show="errors.password"
+      />
 
       <InputField
         for="confirm"
@@ -82,8 +108,6 @@
         >Login Here</a
       >
     </form>
-
-
   </div>
 </template>
 
@@ -131,10 +155,10 @@ export default {
         this.errors.password = "Error";
       }
 
-      if(this.data.password !== this.data.confirm){
+      if (this.data.password !== this.data.confirm) {
         this.errors.confirm = "Error";
-      }  
-      if(Object.keys(this.errors).length === 0){
+      }
+      if (Object.keys(this.errors).length === 0) {
         this.handleSubmit();
       }
     },
@@ -142,15 +166,23 @@ export default {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
 
-    handleSubmit(){
-        // Axios logic goes here to submit data to backend
+    handleSubmit() {
+      // Axios logic goes here to submit data to backend
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .fa-dragon {
   color: red;
+}
+.form__line {
+  top: 3px;
+  left: 0;
+  height: 3px;
+  z-index: 5000;
+  width: 100%;
+  position: absolute;
 }
 </style>

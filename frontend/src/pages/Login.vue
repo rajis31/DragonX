@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-100 h-screen flex flex-col justify-center items-center bg-gray-50"
+    class="w-100 h-100 min-h-screen flex flex-col justify-center items-center bg-gray-50"
   >
     <form
       class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5"
