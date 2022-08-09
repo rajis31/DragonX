@@ -1,6 +1,14 @@
 <template>
   <div
-    class="w-100 h-100 min-h-screen flex flex-col justify-center items-center bg-gray-50"
+    class="
+      w-100
+      h-100
+      min-h-screen
+      flex flex-col
+      justify-center
+      items-center
+      bg-gray-50
+    "
   >
     <form
       class="max-w-[400px] min-w-[200px] bg-white shadow-md p-5"
@@ -27,8 +35,22 @@
         placeholder="Enter Password"
         @input-password="handleData"
       />
+      <a
+        class="
+          w-100
+          block
+          hover:underline
+          cursor-pointer
+          font-medium
+          text-blue-600
+        "
+        @click="$router.push({ name: 'forgot' })"
+      >
+        Forgot Password
+      </a>
       <ErrorMessage msg="Please enter a password" v-show="errors.password" />
       <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
+      <br />
       <button
         class="
           bg-slate-400
@@ -38,7 +60,7 @@
           py-2
           px-4
           rounded
-          mt-5
+          mt-2
         "
         type="Submit"
       >
@@ -163,7 +185,7 @@ export default {
     handleCookie() {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
-    handleSubmit(){
+    handleSubmit() {
       // Axios logic goes here
     }
   }
