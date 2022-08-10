@@ -4,6 +4,7 @@ import "./index.css";
 import store from "./store/store";
 import router from "./router/router";
 import { library } from '@fortawesome/fontawesome-svg-core';
+
 import {
     faDragon,
     faXmark,

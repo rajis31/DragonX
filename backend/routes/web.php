@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/csrf', function(){
+    session()->regenerate();
+
+    return response()->json([
+        "token" => csrf_token()
+    ],200);
+})->middleware("cors");

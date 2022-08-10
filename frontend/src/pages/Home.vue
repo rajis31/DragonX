@@ -10,8 +10,20 @@
 
 <script>
 import SideBar from "../components/SideBar.vue"
+import axios from 'axios';
 
 export default {
+  data(){
+    return {
+      apiUri: "",
+    }
+  },
+  created(){
+      this.apiUri = this.$store.getters.getBackendURI;
+      axios.get(this.apiUri+"/csrf")
+           .then(res => console.log(res))
+           .catch(err => console.log(err))
+  },
   components: {
     SideBar: SideBar,
   }
