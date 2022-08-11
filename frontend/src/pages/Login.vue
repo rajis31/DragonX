@@ -144,14 +144,20 @@
 
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
+import axios from 'axios';
 
 
 export default {
+  created() {
+    this.apiUri = this.$store.getters.getBackendURI;
+  },
   data() {
     return {
       data: {
         username: "",
         password: "",
+        token: "",
+        apiUri: "",
       },
       rememberMe: false,
       errors: {},
@@ -169,7 +175,7 @@ export default {
     handleRememberMe(e) {
       this.rememberMe = e.currentTarget.checked;
     },
-    validate() {
+    async validate() {
       this.errors = {};
 
       if (this.data.username === "") {
@@ -179,15 +185,28 @@ export default {
         this.errors.password = "Error"
       }
       if (Object.keys(this.errors).length === 0) {
-        this.handleSubmit();
+        await this.handleSubmit();
       }
     },
     handleCookie() {
       this.cookieAcknowledged = !this.cookieAcknowledged;
     },
-    handleSubmit() {
-      // Axios logic goes here
-    }
+    async handleSubmit() {
+      try {
+        console.log(this.token);
+        let res = await axios.post(this.apiUri + "/api/login",
+          {
+            username: this.username,
+            password: this.password
+          });
+
+        console.log(res);
+      } catch (err) {
+        console.log(err.response);
+      }
+
+    },
+
   }
 }
 </script>

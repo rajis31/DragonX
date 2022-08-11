@@ -64,7 +64,7 @@
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
 import Notification1 from "../components/Notifications/Notification1.vue";
-import {sleep, yugioh} from "../helpers/helpers";
+import {sleep} from "../helpers/helpers";
 
 export default {
 

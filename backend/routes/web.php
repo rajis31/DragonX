@@ -13,14 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/hi', function(){
+//     return response()->json([
+//         "token" => "Hello!!!!!!!!"
+//     ],200);
+// });
 
-Route::get('/csrf', function(){
-    session()->regenerate();
-
-    return response()->json([
-        "token" => csrf_token()
-    ],200);
-})->middleware("cors");
