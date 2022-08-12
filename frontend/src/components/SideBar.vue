@@ -88,7 +88,7 @@
             >
               <font-awesome-icon icon="fa-solid fa-shop" size="2x" />
               <span :class="!open && 'hidden'" class="origin-left duration-200">
-                Connect to Store
+                Shop Analytics
               </span>
             </li>
     

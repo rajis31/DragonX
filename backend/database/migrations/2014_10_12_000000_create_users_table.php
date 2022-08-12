@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('shopname');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('access_token');
-            $table->string('scope');
+            $table->string('password')->nullable();
+            $table->string('access_token')->nullable();
+            $table->string('scope')->nullable();
             $table->datetime('timestamp');
-            $table->string('hmac');
+            $table->string('hmac')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
