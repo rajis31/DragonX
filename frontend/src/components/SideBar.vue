@@ -4,7 +4,7 @@
     :class="open ? 'w-72' : 'w-24'"
   >
     <img
-      src="control.png"
+      src="/control.png"
       class="
         absolute
         cursor-pointer
