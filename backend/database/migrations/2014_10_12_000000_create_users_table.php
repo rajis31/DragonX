@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('scope')->nullable();
             $table->datetime('timestamp');
             $table->string('hmac')->nullable();
+            $table->string('host')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

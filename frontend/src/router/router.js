@@ -3,6 +3,8 @@ import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import ForgotPassword from "../pages/ForgotPassword.vue";
 import Home from "../pages/Home.vue";
+import Install from "../pages/Install.vue";
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,6 +13,7 @@ const router = createRouter({
         { path: "/register", name: "register", component: Register, meta: { isGuest: true } },
         { path: "/forgot", name: "forgot", component: ForgotPassword, meta: { isGuest: true } },
         { path: "/home", name: "home", component: Home, meta: { isGuest: false } },
+        { path: "/install", name: "install", component: Install, meta: { isGuest: false } },
     ],
 
 });
