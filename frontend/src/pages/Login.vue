@@ -20,13 +20,13 @@
         class="mx-auto block p-4"
       />
       <InputField
-        for="username"
-        label="Username"
+        for="shopname"
+        label="Shop Name"
         type="text"
-        placeholder="Enter Username"
+        placeholder="Enter Shope Name"
         @input-username="handleData"
       />
-      <ErrorMessage msg="Please enter a Username" v-show="errors.username" />
+      <ErrorMessage msg="Please enter Shop Name" v-show="errors.shopname" />
 
       <InputField
         for="password"
@@ -49,7 +49,7 @@
         Forgot Password
       </a>
       <ErrorMessage msg="Please enter a password" v-show="errors.password" />
-      <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
+      <ErrorMessage msg="Shop Name or Password is wrong" v-show="errors.login" />
       <br />
       <button
         class="
@@ -154,9 +154,8 @@ export default {
   data() {
     return {
       data: {
-        username: "",
+        shopname: "",
         password: "",
-        token: "",
         apiUri: "",
       },
       rememberMe: false,
@@ -178,8 +177,8 @@ export default {
     async validate() {
       this.errors = {};
 
-      if (this.data.username === "") {
-        this.errors.username = "Error"
+      if (this.data.shopname === "") {
+        this.errors.shopname = "Error"
       }
       if (this.data.password === "") {
         this.errors.password = "Error"
@@ -196,7 +195,7 @@ export default {
         console.log(this.token);
         let res = await axios.post(this.apiUri + "/api/login",
           {
-            username: this.username,
+            shopname: this.shopname,
             password: this.password
           });
 

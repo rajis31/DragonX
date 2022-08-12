@@ -13,18 +13,18 @@ class UserController extends Controller
          * Check login credentials
          */
 
-        //  $this->validate($request,[
-        //     "username" => "required",
-        //     "password" => "required"
-        //  ]);
+         $this->validate($request,[
+            "username" => "required",
+            "password" => "required"
+         ]);
 
-        // $credentials = $request->only("username","password");
-        // if(Auth::attempt($credentials)){
-        //     return response()->json([
-        //         "message" => "Login Successful",
-        //         "success" => "True"
-        //     ],200);
-        // }
+        $credentials = $request->only("username","password");
+        if(Auth::attempt($credentials)){
+            return response()->json([
+                "message" => "Login Successful",
+                "success" => "True"
+            ],200);
+        }
 
         return response()->json([
             "message" => "Login Not Successful",

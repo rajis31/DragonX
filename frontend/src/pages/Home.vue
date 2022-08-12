@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       apiUri: "",
-      token: "",
     }
   },
   created() {
