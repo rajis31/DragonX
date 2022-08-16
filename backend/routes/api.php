@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Users
 Route::post("/login", [UserController::class,'login']);
+
+// Shops
+Route::get("/install",[ShopsController::class,"install"]);
