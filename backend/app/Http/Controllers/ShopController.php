@@ -8,7 +8,7 @@ use App\Models\User;
 
 class ShopController extends Controller
 {
-    public function install(Request $request){
+    public function installation(Request $request){
         $shop         = request->get("shop");
         $api_key      = env("SHOPIFY_API");
         $scopes       = env("SHOPIFY_SCOPES");
