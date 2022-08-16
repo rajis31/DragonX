@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 
-class ShopsController extends Controller
+class ShopController extends Controller
 {
     public function install(Request $request){
         $shop         = request->get("shop");
@@ -36,7 +36,6 @@ class ShopsController extends Controller
                                 $redirect_uri,
                                 $nonce
                             );
-        dd("Hello this is install");
         return Redirect::to($install_url);
     }
 

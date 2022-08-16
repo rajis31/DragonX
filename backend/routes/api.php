@@ -21,5 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::post("/login", [UserController::class,'login']);
 
 // Shops
-Route::get("/install",[ShopsController::class,"install"]);
-Route::get("/token",  [ShopsController::class,"generate_token"]);
+Route::get("/install",[ShopController::class,"install"]);
+Route::get("/token",  [ShopController::class,"generate_token"]);
