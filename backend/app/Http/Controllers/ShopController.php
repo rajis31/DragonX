@@ -36,6 +36,8 @@ class ShopController extends Controller
                                 $redirect_uri,
                                 $nonce
                             );
+
+        echo "This is the install page";
         return Redirect::to($install_url);
     }
 
