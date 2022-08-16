@@ -1,7 +1,7 @@
 server {
     listen 80;
     server_name dragonx.dev-top.com;
-    root /home/dragonx/frontend/dist; #path to static directory
+    root /home/DragonX/frontend/dist; #path to static directory
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-XSS-Protection "1; mode=block";
     add_header X-Content-Type-Options "nosniff";
@@ -11,7 +11,7 @@ server {
             try_files $uri $uri/ /index.html;
     }
     location /api {
-            alias /home/dragonx/backend/public/;
+            alias /home/DragonX/backend/public/;
             try_files $uri $uri/ @laravelapi;
             location ~ \.php$ {
                     include snippets/fastcgi-php.conf;
