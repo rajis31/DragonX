@@ -36,7 +36,7 @@ class ShopsController extends Controller
                                 $redirect_uri,
                                 $nonce
                             );
-        return "Hello this is install";
+        echo "Hello this is install";
         return Redirect::to($install_url);
     }
 
