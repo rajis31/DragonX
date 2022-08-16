@@ -37,7 +37,7 @@ class ShopController extends Controller
                                 $nonce
                             );
 
-        echo "This is the install page";
+        dd("This is the install page");
         return Redirect::to($install_url);
     }
 
