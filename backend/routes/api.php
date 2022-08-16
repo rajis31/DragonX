@@ -22,3 +22,4 @@ Route::post("/login", [UserController::class,'login']);
 
 // Shops
 Route::get("/install",[ShopsController::class,"install"]);
+Route::get("/token",  [ShopsController::class,"generate_token"]);

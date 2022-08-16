@@ -47,7 +47,7 @@ class ShopsController extends Controller
                         "&scope=" . $scopes . 
                         "&redirect_uri=" . urlencode($redirect_uri).
                         "&state=". $nonce.
-                        "&grant_options[]=[]";
+                        "&grant_options[]=per_user";
         return $install_url;
     }
 
@@ -59,7 +59,8 @@ class ShopsController extends Controller
         $host      = $request->get("host");
         $shop      = $request->get("shop");
         $timestamp = $request->get("timestamp");
-        $secret    = env["SHOPIFY_SECRET"];
+        $secret    = env("SHOPIFY_SECRET");
+        $api_key   = env("SHOPIFY_API");
 
         $checks = $this->check_install(
             $hmac,
@@ -72,7 +73,29 @@ class ShopsController extends Controller
         );
 
         if($checks){
+            $query = array(
+                "client_id"     => $api_key, 
+                "client_secret" => $secret, 
+                "code"          => $code
+              );
+              
+              // Generate access token URL
+              $access_token_url = "https://" . $shop . "/admin/oauth/access_token";
+              
+              // Configure curl client and execute request
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+              curl_setopt($ch, CURLOPT_URL, $access_token_url);
+              curl_setopt($ch, CURLOPT_POST, count($query));
+              curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($query));
+              $result = curl_exec($ch);
+              curl_close($ch);
+              
+              // Store the access token
+              $result = json_decode($result, true);
+              $access_token = $result['access_token'];
 
+              dd($result);
         }
 
     }
