@@ -37,8 +37,8 @@ class ShopController extends Controller
                                 $nonce
                             );
 
-        dd("This is the install page");
-        return Redirect::to($install_url);
+        return response()->json(["message"=>"Im an idiot"],200);
+        // return Redirect::to($install_url);
     }
 
     private function generate_install_url($shop, $api_key,$scopes,$redirect_uri, $nonce){
