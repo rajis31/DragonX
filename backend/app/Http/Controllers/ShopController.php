@@ -54,7 +54,7 @@ class ShopController extends Controller
     private function generate_install_url($shop, $api_key,$scopes,$redirect_uri, $nonce){
         $install_url = "https://" . 
                         $shop . 
-                        ".myshopify.com/admin/oauth/authorize?client_id=" . 
+                        "/admin/oauth/authorize?client_id=" . 
                         $api_key . 
                         "&scope=" . $scopes . 
                         "&redirect_uri=" . urlencode($redirect_uri).
