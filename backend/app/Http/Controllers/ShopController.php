@@ -9,7 +9,7 @@ use App\Models\User;
 class ShopController extends Controller
 {
     public function installation(Request $request){
-        $shop         = request->get("shop");
+        $shop         = $request->get("shop");
         $api_key      = env("SHOPIFY_API");
         $scopes       = env("SHOPIFY_SCOPES");
         $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
