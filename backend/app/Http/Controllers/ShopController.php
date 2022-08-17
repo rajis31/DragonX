@@ -15,10 +15,14 @@ class ShopController extends Controller
         $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
         $nonce        =  bin2hex(random_bytes(12));
 
+        if($shop === null ){
+            return response()->view('errors.404',$data,404);
+        }
+
 
         if( User::where("shopname",$shop)->exists() === null ){
-            $user            = new User;
-            $user->shopname  = $shop;
+            $user             = new User;
+            $user->shopname   = $shop;
             $user->nonce      = $nonce;
             $user->save();
         } else{
