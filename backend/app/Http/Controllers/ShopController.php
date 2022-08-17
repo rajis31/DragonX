@@ -25,8 +25,6 @@ class ShopController extends Controller
 
         if( User::where("shopname",$shop)->exists() ){
             $user             = new User;
-
-            dd($user);
             $user->shopname   = $shop;
             $user->nonce      = $nonce;
             $user->save();
