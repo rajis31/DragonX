@@ -23,9 +23,10 @@ class ShopController extends Controller
             return response()->view('404');
         }
 
-        dd($nonce);
         if( User::where("shopname",$shop)->exists() === null ){
             $user             = new User;
+
+            dd($user);
             $user->shopname   = $shop;
             $user->nonce      = $nonce;
             $user->save();
