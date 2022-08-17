@@ -23,7 +23,7 @@ class ShopController extends Controller
             return response()->view('404');
         }
 
-        if( User::where("shopname",$shop)->exists() === null ){
+        if( User::where("shopname",$shop)->exists() ){
             $user             = new User;
 
             dd($user);
