@@ -23,21 +23,20 @@ class ShopController extends Controller
             return response()->view('404');
         }
 
-        if( User::where("shopname",$shop)->exists() ){
+        if( !User::where("shopname",$shop)->exists() ){
             $user             = new User;
             $user->shopname   = $shop;
             $user->nonce      = $nonce;
             $user->save();
+        } else{
+            $user_found = User::where("shopname",$shop)->first();
+            $user_found->nonce        = $nonce;
+            $user_found->hmac         = $hmac;
+            $user_found->timestamp    = $timestamp;
+            $user_found->api_key      = null;
+            $user_found->access_token = null;
+            $user_found->save();
         }
-        // } else{
-        //     $user_found = User::where("shopname",$shop)->first();
-        //     $user_found->nonce        = $nonce;
-        //     $user_found->hmac         = $hmac;
-        //     $user_found->timestamp    = $timestamp;
-        //     $user_found->api_key      = null;
-        //     $user_found->access_token = null;
-        //     $user_found->save();
-        // }
 
         $install_url = $this->generate_install_url(
                                 $shop,
