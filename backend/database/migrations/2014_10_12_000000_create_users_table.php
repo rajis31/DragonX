@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('access_token')->nullable();
             $table->string('scope')->nullable();
-            $table->datetime('timestamp');
+            $table->integer('timestamp');
             $table->string('hmac')->nullable();
             $table->string('nonce')->nullable();
             $table->string('host')->nullable();
