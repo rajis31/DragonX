@@ -35,7 +35,6 @@ class ShopController extends Controller
             $user_found->nonce        = $nonce;
             $user_found->hmac         = $hmac;
             $user_found->timestamp    = $timestamp;
-            $user_found->api_key      = null;
             $user_found->access_token = null;
             $user_found->save();
         }
