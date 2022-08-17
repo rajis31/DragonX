@@ -27,6 +27,8 @@ class ShopController extends Controller
             $user             = new User;
             $user->shopname   = $shop;
             $user->nonce      = $nonce;
+            $user->timestamp  = $timestamp;
+            $user->hmac       = $hmac;
             $user->save();
         } else{
             $user_found = User::where("shopname",$shop)->first();
