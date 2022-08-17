@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 
+
+
 class ShopController extends Controller
 {
     public function installation(Request $request){
         $shop         = $request->get("shop");
+        $hmac         = $request->get("hmac");
+        $timestamp    = $request->get("timestamp");
         $api_key      = env("SHOPIFY_API");
         $scopes       = env("SHOPIFY_SCOPES");
         $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
@@ -28,6 +32,8 @@ class ShopController extends Controller
         } else{
             $user_found = User::where("shopname",$shop)->first();
             $user_found->nonce        = $nonce;
+            $user_found->hmac         = $hmac;
+            $user_found->timestamp    = $timestamp;
             $user_found->api_key      = null;
             $user_found->access_token = null;
             $user_found->save();
