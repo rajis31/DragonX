@@ -19,8 +19,6 @@ class ShopController extends Controller
         $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
         $nonce        =  bin2hex(random_bytes(12));
 
-
-        dd($api_key);
         if($shop === null ){
             return response()->view('404');
         }
