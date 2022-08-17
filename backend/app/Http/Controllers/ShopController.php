@@ -9,33 +9,33 @@ use App\Models\User;
 class ShopController extends Controller
 {
     public function installation(Request $request){
-        $shop         = request->get("shop");
-        $api_key      = env("SHOPIFY_API");
-        $scopes       = env("SHOPIFY_SCOPES");
-        $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
-        $nonce        =  bin2hex(random_bytes(12));
+        // $shop         = request->get("shop");
+        // $api_key      = env("SHOPIFY_API");
+        // $scopes       = env("SHOPIFY_SCOPES");
+        // $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
+        // $nonce        =  bin2hex(random_bytes(12));
 
 
-        if( User::where("shopname",$shop)->exists() === null ){
-            $user            = new User;
-            $user->shopname  = $shop;
-            $user->nonce      = $nonce;
-            $user->save();
-        } else{
-            $user_found = User::where("shopname",$shop)->first();
-            $user_found->nonce        = $nonce;
-            $user_found->api_key      = null;
-            $user_found->access_token = null;
-            $user_found->save();
-        }
+        // if( User::where("shopname",$shop)->exists() === null ){
+        //     $user            = new User;
+        //     $user->shopname  = $shop;
+        //     $user->nonce      = $nonce;
+        //     $user->save();
+        // } else{
+        //     $user_found = User::where("shopname",$shop)->first();
+        //     $user_found->nonce        = $nonce;
+        //     $user_found->api_key      = null;
+        //     $user_found->access_token = null;
+        //     $user_found->save();
+        // }
 
-        $install_url = $this->generate_install_url(
-                                $shop,
-                                $api_key,
-                                $scopes,
-                                $redirect_uri,
-                                $nonce
-                            );
+        // $install_url = $this->generate_install_url(
+        //                         $shop,
+        //                         $api_key,
+        //                         $scopes,
+        //                         $redirect_uri,
+        //                         $nonce
+        //                     );
 
         return response()->json(["message"=>"Im an idiot"],200);
         // return Redirect::to($install_url);
