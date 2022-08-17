@@ -16,7 +16,7 @@ class ShopController extends Controller
         $nonce        =  bin2hex(random_bytes(12));
 
         if($shop === null ){
-            return response()->view('404',404);
+            return response()->view('404');
         }
 
 
