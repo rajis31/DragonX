@@ -19,6 +19,8 @@ class ShopController extends Controller
         $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
         $nonce        =  bin2hex(random_bytes(12));
 
+
+        dd($api_key);
         if($shop === null ){
             return response()->view('404');
         }
@@ -149,3 +151,7 @@ class ShopController extends Controller
 
 
 }
+
+"""
+https://codeinspire-shop-2.myshopify.com/admin/oauth/authorize?client_id=&scope=&redirect_uri=https%3A%2F%2Fdragonx.dev-top.com%2Fapi%2Fgenerate_token&state=7bb7923a64d1873271202d1d&grant_options[]=per_user
+"""
