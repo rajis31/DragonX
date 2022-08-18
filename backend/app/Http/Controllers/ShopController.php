@@ -153,7 +153,7 @@ class ShopController extends Controller
         } 
 
         // Check shop 
-        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com",$shop)){
+        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com/",$shop)){
             return false;
         }
 
