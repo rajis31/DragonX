@@ -107,6 +107,8 @@ class ShopController extends Controller
               // Store the access token
               $result = json_decode($result, true);
               $access_token = $result['access_token'];
+
+              dd($result);
         }
 
     }
@@ -120,12 +122,11 @@ class ShopController extends Controller
                         ->pluck("nonce")
                         ->first();
 
-        $errors["nonce_db"] = $nonce_db;
-        $errors["nonce_req"] = $nonce;
+    
         
-        // if($nonce_db !== $nonce){
-        //     return false;
-        // }
+        if($nonce_db !== $nonce){
+            return false;
+        }
 
         // verify hmac
         $params = [
@@ -139,21 +140,24 @@ class ShopController extends Controller
         ksort($params);
 
         $computed_hmac = hash_hmac('sha256', http_build_query($params), $secret);
-        $errors["computed_hmac"] = $computed_hmac;
-        $errors["hmac"] = $hmac;
-        $errors["shop"] = $shop;
-        $errors["shop_match"] = preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com/",$shop);
 
-        // if ( !hash_equals($hmac, $computed_hmac) ) {
-        //     return false;
-        // } 
+        // $errors["nonce_db"] = $nonce_db;
+        // $errors["nonce_req"] = $nonce;
+        // $errors["computed_hmac"] = $computed_hmac;
+        // $errors["hmac"] = $hmac;
+        // $errors["shop"] = $shop;
+        // $errors["shop_match"] = preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com/",$shop);
 
-        // // Check shop 
-        // if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com",$shop)){
-        //     return false;
-        // }
+        if ( !hash_equals($hmac, $computed_hmac) ) {
+            return false;
+        } 
 
-        return $errors;
+        // Check shop 
+        if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com",$shop)){
+            return false;
+        }
+
+        return true;
     }
 
 
