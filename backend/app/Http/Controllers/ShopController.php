@@ -83,6 +83,8 @@ class ShopController extends Controller
             $secret
         );
 
+        dd($checks);
+
         if($checks){
             $query = array(
                 "client_id"     => $api_key, 
