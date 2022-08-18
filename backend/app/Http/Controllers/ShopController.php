@@ -83,7 +83,6 @@ class ShopController extends Controller
             $secret
         );
 
-        dd($checks);
 
         if($checks){
             $query = array(
