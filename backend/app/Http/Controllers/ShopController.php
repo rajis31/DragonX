@@ -66,7 +66,7 @@ class ShopController extends Controller
         
         $code      = $request->get("code");
         $hmac      = $request->get("hmac");
-        $nonce     = $request->get("nonce");
+        $nonce     = $request->get("state");
         $host      = $request->get("host");
         $shop      = $request->get("shop");
         $timestamp = $request->get("timestamp");
