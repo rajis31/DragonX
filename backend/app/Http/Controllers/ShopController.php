@@ -142,7 +142,7 @@ class ShopController extends Controller
         $errors["computed_hmac"] = $computed_hmac;
         $errors["hmac"] = $hmac;
         $errors["shop"] = $shop;
-        $errors["shop_match"] = preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com",$shop);
+        $errors["shop_match"] = preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\-]*.myshopify.com/",$shop);
 
         // if ( !hash_equals($hmac, $computed_hmac) ) {
         //     return false;
