@@ -116,10 +116,9 @@ class ShopController extends Controller
         $errors =[];
 
         // verfiy nonce 
-        $nonce_db = User::select("nonce")
-                        ->where("shopname", $shop)
-                        ->first()
-                        ->pluck();
+        $nonce_db = User::where("shopname", $shop)
+                        ->pluck("nonce")
+                        ->first();
 
         $errors["nonce_db"] = $nonce_db;
         $errors["nonce_req"] = $nonce;
