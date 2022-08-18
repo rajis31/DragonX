@@ -83,8 +83,6 @@ class ShopController extends Controller
             $secret
         );
 
-        $checks = false;
-
         if($checks){
             $query = array(
                 "client_id"     => $api_key, 
@@ -144,6 +142,7 @@ class ShopController extends Controller
 
         $computed_hmac = hash_hmac('sha256', http_build_query($params), $secret);
         
+        // --- REMOVE LATER ---
         // $errors =[];
         // $errors["nonce_db"] = $nonce_db;
         // $errors["nonce_req"] = $nonce;
