@@ -83,6 +83,7 @@ class ShopController extends Controller
             $secret
         );
 
+        $checks = false;
 
         if($checks){
             $query = array(
@@ -107,22 +108,25 @@ class ShopController extends Controller
               $result = json_decode($result, true);
               $access_token = $result['access_token'];
 
-              dd($result);
+              // Update store account with access token 
+              $user = User::where("shopname", $shop)->first();
+              $user->access_token = $access_token;
+              $user->save();
+
+              return Redirect::to("https://dragonx.dev-top.com/login");
+        } else {
+            return view("installation");
         }
 
     }
 
     private function check_install($hmac, $code, $nonce, $host, $shop, $timestamp, $secret){
         
-        $errors =[];
-
         // verfiy nonce 
         $nonce_db = User::where("shopname", $shop)
                         ->pluck("nonce")
                         ->first();
-
     
-        
         if($nonce_db !== $nonce){
             return false;
         }
@@ -139,7 +143,8 @@ class ShopController extends Controller
         ksort($params);
 
         $computed_hmac = hash_hmac('sha256', http_build_query($params), $secret);
-
+        
+        // $errors =[];
         // $errors["nonce_db"] = $nonce_db;
         // $errors["nonce_req"] = $nonce;
         // $errors["computed_hmac"] = $computed_hmac;
@@ -161,5 +166,3 @@ class ShopController extends Controller
 
 
 }
-
-
