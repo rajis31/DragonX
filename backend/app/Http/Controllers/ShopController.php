@@ -16,7 +16,7 @@ class ShopController extends Controller
         $timestamp    = $request->get("timestamp");
         $api_key      = env("SHOPIFY_API");
         $scopes       = env("SHOPIFY_SCOPES");
-        $redirect_uri = "https://dragonx.dev-top.com/api/generate_token";
+        $redirect_uri = "https://dragonx.dev-top.com/api/token";
         $nonce        =  bin2hex(random_bytes(12));
 
         if($shop === null ){
@@ -149,3 +149,5 @@ class ShopController extends Controller
 
 
 }
+
+
