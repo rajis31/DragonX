@@ -38,25 +38,12 @@
         label="Email"
         type="email"
         placeholder="Enter Email"
-        @input-username="handleData"
+        @input-email="handleData"
       />
       <ErrorMessage msg="Please enter an Email" v-show="errors.email" />
       <ErrorMessage
         msg="Email already exists. Please use another one"
         v-show="errors.email_exists"
-      />
-
-      <InputField
-        for="username"
-        label="Username"
-        type="text"
-        placeholder="Enter Username"
-        @input-username="handleData"
-      />
-      <ErrorMessage msg="Please enter a Username" v-show="errors.username" />
-      <ErrorMessage
-        msg="User already exists. Please use anotherone"
-        v-show="errors.username_exists"
       />
 
       <InputField
@@ -127,7 +114,7 @@ export default {
 
     document.querySelectorAll("input")[0].value = this.$route.params?.shop;
     document.querySelectorAll("input")[0].setAttribute("disabled","disabled");
-    
+
     if (this.$route.params?.shop) {
       this.handleData({
         "name": "shopname",
@@ -142,7 +129,7 @@ export default {
         shopname: "",
         password: "",
         confirm: "",
-        name: "",
+        email: "",
       },
       errors: {},
     }
