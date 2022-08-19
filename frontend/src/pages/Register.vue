@@ -129,6 +129,8 @@ export default {
     if (this.$route.params?.shop) {
       let shop = this.$route.params?.shop;
       shop = shop.slice(0, shop.indexOf("."));
+      console.log(shop);
+
       this.handleData({
         "name": "shopname",
         "value": shop
