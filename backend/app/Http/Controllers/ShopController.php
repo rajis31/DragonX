@@ -111,7 +111,10 @@ class ShopController extends Controller
               $user->access_token = $access_token;
               $user->save();
 
-              return Redirect::to("https://dragonx.dev-top.com/login");
+              $pos  = strpos($shop,".");
+              $shop = substr($shop,0,$pos); 
+
+              return Redirect::to("https://dragonx.dev-top.com/register/".$shop);
         } else {
             return view("installation");
         }
