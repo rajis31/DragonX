@@ -21,13 +21,17 @@
         class="mx-auto block p-4"
       />
       <InputField
-        for="name"
-        label="Name"
+        class="shopname"
+        for="shopname"
+        label="Shopname"
         type="text"
-        placeholder="Enter your Name"
-        @input-name="handleData"
+        placeholder="Enter your Shop"
+        @input-shopname="handleData"
       />
-      <ErrorMessage msg="Please enter your Name" v-show="errors.name" />
+      <ErrorMessage
+        msg="Please enter your Shop Name"
+        v-show="errors.shopname"
+      />
 
       <InputField
         for="email"
@@ -119,10 +123,23 @@ import ErrorMessage from "../components/ErrorMessage.vue";
 
 
 export default {
+  mounted() {
+    document.querySelector(".shopname").attr("disabled", "disabled");
+
+    if (this.$route.params?.shop) {
+      let shop = this.$route.params?.shop;
+      shop = shop.slice(0, shop.indexOf("."));
+      this.handleData({
+        "name": "shopname",
+        "value": shop
+      });
+    }
+
+  },
   data() {
     return {
       data: {
-        username: "",
+        shopname: "",
         password: "",
         confirm: "",
         name: "",

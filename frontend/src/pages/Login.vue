@@ -23,7 +23,7 @@
         for="shopname"
         label="Shop Name"
         type="text"
-        placeholder="Enter Shope Name"
+        placeholder="Enter Shop Name"
         @input-username="handleData"
       />
       <ErrorMessage msg="Please enter Shop Name" v-show="errors.shopname" />

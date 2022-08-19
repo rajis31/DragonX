@@ -11,6 +11,7 @@ const router = createRouter({
     routes: [
         { path: "/login", name: "login", component: Login, meta: { isGuest: true } },
         { path: "/register", name: "register", component: Register, meta: { isGuest: true } },
+        { path: "/register/:shop", name: "register", component: Register, meta: { isGuest: true } },
         { path: "/forgot", name: "forgot", component: ForgotPassword, meta: { isGuest: true } },
         { path: "/home", name: "home", component: Home, meta: { isGuest: false } },
         { path: "/install", name: "install", component: Install, meta: { isGuest: false } },
