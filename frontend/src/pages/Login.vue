@@ -26,7 +26,10 @@
         placeholder="Enter Shop Name"
         @input-username="handleData"
       />
-      <ErrorMessage msg="Please enter Shop Name" v-show="errors.shopname" />
+      <ErrorMessage 
+        msg="Please enter Shop Name" 
+        v-show="errors.shopname" 
+      />
 
       <InputField
         for="password"
@@ -196,7 +199,7 @@ export default {
         let res = await axios.post(this.apiUri + "/api/login",
           {
             shopname: this.shopname,
-            password: this.password
+            password: this.password,
           });
 
         console.log(res);

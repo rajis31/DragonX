@@ -33,4 +33,21 @@ class UserController extends Controller
 
     }
 
+    public function register(Request $request){
+        $shop = User::where("shopname", $request->shopname)
+                        ->first();
+        if($shop->update($request->all())){
+            return response()->json([
+                "message" => "Successfully Stored",
+                "success" => true 
+            ],200);
+        }
+
+        return response()->json([
+            "message" => "Could not store",
+            "success" => false 
+        ],420);
+       
+    }
+
 }

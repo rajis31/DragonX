@@ -10,7 +10,6 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/login", name: "login", component: Login, meta: { isGuest: true } },
-        { path: "/register", name: "register", component: Register, meta: { isGuest: true } },
         { path: "/register/:shop", name: "register", component: Register, meta: { isGuest: true } },
         { path: "/forgot", name: "forgot", component: ForgotPassword, meta: { isGuest: true } },
         { path: "/home", name: "home", component: Home, meta: { isGuest: false } },

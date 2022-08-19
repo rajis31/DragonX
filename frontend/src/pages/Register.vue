@@ -110,10 +110,12 @@ import ErrorMessage from "../components/ErrorMessage.vue";
 
 
 export default {
+  created() {
+    this.apiUri = this.$store.getters.getBackendURI;
+  },
   mounted() {
-
     document.querySelectorAll("input")[0].value = this.$route.params?.shop;
-    document.querySelectorAll("input")[0].setAttribute("disabled","disabled");
+    document.querySelectorAll("input")[0].setAttribute("disabled", "disabled");
 
     if (this.$route.params?.shop) {
       this.handleData({
@@ -130,6 +132,7 @@ export default {
         password: "",
         confirm: "",
         email: "",
+        apiUri: ""
       },
       errors: {},
     }
@@ -171,7 +174,16 @@ export default {
     },
 
     handleSubmit() {
-      // Axios logic goes here to submit data to backend
+      axios.post(this.apiUri+"/api/register", {
+        shopname: this.shopname,
+        password: this.password,
+        email: this.email
+      }).then(res => {
+         if( res.status === 200 ){
+              console.log(res.data);
+         }
+      })
+
     }
   }
 }
