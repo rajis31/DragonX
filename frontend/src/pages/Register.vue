@@ -124,8 +124,9 @@ import ErrorMessage from "../components/ErrorMessage.vue";
 
 export default {
   mounted() {
+    
+    document.querySelectorAll("input")[0].value = this.$route.params?.shop;
 
-    console.log(this.$route.params?.shop);
     if (this.$route.params?.shop) {
       this.handleData({
         "name": "shopname",
