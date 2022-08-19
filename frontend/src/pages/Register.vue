@@ -124,8 +124,11 @@ import ErrorMessage from "../components/ErrorMessage.vue";
 
 export default {
   mounted() {
-    document.querySelector(".shopname").setAttribute("disabled", "disabled");
-
+     document
+        .querySelector(".shopname")
+        .setAttribute("disabled", "disabled");
+        
+    console.log(this.$route.params?.shop);
     if (this.$route.params?.shop) {
       let shop = this.$route.params?.shop;
       console.log(shop.indexOf("."));
