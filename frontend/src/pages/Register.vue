@@ -127,17 +127,12 @@ export default {
      document
         .querySelector(".shopname")
         .setAttribute("disabled", "disabled");
-        
+
     console.log(this.$route.params?.shop);
     if (this.$route.params?.shop) {
-      let shop = this.$route.params?.shop;
-      console.log(shop.indexOf("."));
-      shop = shop.slice(0, shop.indexOf(".")+1);
-      console.log(shop);
-
       this.handleData({
         "name": "shopname",
-        "value": shop
+        "value": this.$route.params?.shop
       });
     }
 
