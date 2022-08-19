@@ -128,6 +128,7 @@ export default {
 
     if (this.$route.params?.shop) {
       let shop = this.$route.params?.shop;
+      console.log(shop.indexOf("."));
       shop = shop.slice(0, shop.indexOf(".")+1);
       console.log(shop);
 
