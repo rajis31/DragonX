@@ -124,9 +124,10 @@ import ErrorMessage from "../components/ErrorMessage.vue";
 
 export default {
   mounted() {
-    
-    document.querySelectorAll("input")[0].value = this.$route.params?.shop;
 
+    document.querySelectorAll("input")[0].value = this.$route.params?.shop;
+    document.querySelectorAll("input")[0].setAttribute("disabled","disabled");
+    
     if (this.$route.params?.shop) {
       this.handleData({
         "name": "shopname",
