@@ -103,20 +103,6 @@
           Remember Me
         </label>
       </div>
-      <a
-        href="/register"
-        class="
-          text-center
-          w-100
-          block
-          mt-5
-          hover:underline
-          cursor-pointer
-          font-medium
-          text-blue-600
-        "
-        >Register Here</a
-      >
     </form>
 
     <div

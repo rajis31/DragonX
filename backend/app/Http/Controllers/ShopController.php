@@ -20,7 +20,7 @@ class ShopController extends Controller
         $nonce        =  bin2hex(random_bytes(12));
 
         if($shop === null ){
-            return response()->view('404');
+            return response()->view('errors.404');
         }
 
         if( !User::where("shopname",$shop)->exists() ){
