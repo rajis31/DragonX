@@ -111,10 +111,8 @@ import axios from "axios";
 
 
 export default {
-  created() {
-    this.apiUri = this.$store.getters.getBackendURI;
-  },
   mounted() {
+    this.apiUri = this.$store.getters.getBackendURI;
     document.querySelectorAll("input")[0].value = this.$route.params?.shop;
     document.querySelectorAll("input")[0].setAttribute("disabled", "disabled");
 
@@ -175,10 +173,11 @@ export default {
     },
 
     handleSubmit() {
+      console.log(this.data.shopname + ".myshopify.com");
       axios.post(this.apiUri+"/register", {
-        shopname: this.shopname,
-        password: this.password,
-        email: this.email
+        shopname: this.data.shopname + ".myshopify.com",
+        password: this.data.password,
+        email: this.data.email
       }).then(res => {
          if( res.status === 200 ){
               console.log(res.data);

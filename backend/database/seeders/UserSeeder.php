@@ -18,17 +18,17 @@ class UserSeeder extends Seeder
     {
         $shops = [
             [
-             "shopname" => "shop-1", 
+             "shopname" => "shop-1.myshopify.com", 
              "timestamp" => time(), 
              "password" =>Hash::make("password123")
             ],
             [
-             "shopname" => "shop-2", 
+             "shopname" => "shop-2.myshopify.com", 
              "timestamp" => time(), 
              "password" =>Hash::make("password123")
             ],
             [
-              "shopname" => "shop-3", 
+              "shopname" => "shop-3.myshopify.com", 
               "timestamp" => time(), 
               "password" =>Hash::make("password123")
             ],
