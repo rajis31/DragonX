@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 const store = createStore({
     state:{
         isLoggedIn: false,
-        backendURI: "http://127.0.0.1:8000"
+        // backendURI: "http://127.0.0.1:8000"
+        backendURI: "https://dragonx.dev-top.com",
     },
     getters: {
         getIsLoggedIn(state){
