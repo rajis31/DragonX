@@ -107,6 +107,7 @@
 
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
+import axios from "axios";
 
 
 export default {
@@ -174,7 +175,7 @@ export default {
     },
 
     handleSubmit() {
-      axios.post(this.apiUri+"/api/register", {
+      axios.post(this.apiUri+"/register", {
         shopname: this.shopname,
         password: this.password,
         email: this.email
