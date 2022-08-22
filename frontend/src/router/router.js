@@ -16,8 +16,8 @@ const router = createRouter({
         { path: "/install", name: "install", component: Install, meta: { isGuest: false } },
 
         // Delete This
-        // { path: "*", beforeEnter(to){  window.location.href = window.location.origin+"/api/installation" }},
-        { path: "/:catchAll(.*)", redirect(to){  window.location.href = "http://127.0.0.1:8000/api/installation" }},
+        { path: "/:catchAll(.*)", beforeEnter(to){  window.location.href = window.location.origin+"/api/installation" }},
+        // { path: "/:catchAll(.*)", redirect(to){  window.location.href = "http://127.0.0.1:8000/api/installation" }},
     ],
 
 });
