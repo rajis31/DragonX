@@ -68,6 +68,10 @@
       <ErrorMessage msg="Passwords do not match" v-show="errors.confirm" />
 
       <ErrorMessage msg="Username or Password is wrong" v-show="errors.login" />
+      <ErrorMessage
+        msg="Could not save credentials. Try again"
+        v-show="errors.backend"
+      />
       <button
         class="
           bg-slate-400
@@ -173,16 +177,20 @@ export default {
     },
 
     handleSubmit() {
-      console.log(this.data.shopname + ".myshopify.com");
-      axios.post(this.apiUri+"/register", {
+
+      axios.post(this.apiUri + "/register", {
         shopname: this.data.shopname + ".myshopify.com",
         password: this.data.password,
         email: this.data.email
       }).then(res => {
-         if( res.status === 200 ){
-              console.log(res.data);
-         }
-      })
+        if (res.status === 200) {
+          if (res.data.success === true) {
+            this.$router.push("/home");
+          }
+        } else if (res.status !== 200) {
+          this.errors.backend = "Error";
+        }
+      });
 
     }
   }
