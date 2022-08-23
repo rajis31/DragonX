@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Users
-Route::post("/login", [UserController::class,'login']);
-Route::post("/register", [UserController::class,'register']);
-
-
 // Shops
-Route::get("/installation",[ShopController::class,"installation"]);
-Route::get("/token",  [ShopController::class,"generate_token"]);
+Route::get("/", function(){
+    return redirect()->route("installation");
+});
+Route::post("/login", [UserController::class,'login'])->name("login");
+Route::post("/register", [UserController::class,'register'])->name("register");
+
+
+// Install
+Route::get("/installation",[ShopController::class,"installation"])->name("installation");
+Route::get("/token",  [ShopController::class,"generate_token"])->name("token");
