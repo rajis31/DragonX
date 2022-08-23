@@ -23,6 +23,10 @@ class ShopController extends Controller
             return response()->view('errors.404');
         }
 
+        if($shop !== null && $shop->api_key !== null){
+            return Redirect::to(env("APP_URL")."/login");
+        }
+
         if( !User::where("shopname",$shop)->exists() ){
             $user             = new User;
             $user->shopname   = $shop;
