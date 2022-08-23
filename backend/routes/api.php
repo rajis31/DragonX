@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Shops
-Route::get("/", function(){
-    return redirect()->route("installation");
-});
 Route::post("/login", [UserController::class,'login'])->name("login");
 Route::post("/register", [UserController::class,'register'])->name("register");
 
