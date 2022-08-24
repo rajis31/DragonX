@@ -16,6 +16,7 @@ const router = createRouter({
         { path: "/install", name: "install", component: Install, meta: { isGuest: false } },
         { path: "/api"},
         {path: "/", name:"main", beforeEnter(to) { 
+            console.log(to);
             console.log(this.$route.params);
             // window.location.href = window.location.origin+"/api/installation" ;
 
