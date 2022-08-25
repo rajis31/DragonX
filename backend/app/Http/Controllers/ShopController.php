@@ -23,7 +23,7 @@ class ShopController extends Controller
             return response()->view('errors.404');
         }
 
-        if($shop !== null && $shop->api_key !== null){
+        if($shop !== null && $shop->access_token !== null){
             return Redirect::to(env("APP_URL")."/login");
         }
 
