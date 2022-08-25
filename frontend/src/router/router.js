@@ -16,10 +16,7 @@ const router = createRouter({
         { path: "/install", name: "install", component: Install, meta: { isGuest: false } },
         { path: "/api"},
         {path: "/", name:"main", beforeEnter(to) { 
-            console.log(to);
-            console.log(to.href);
-            // window.location.href = window.location.origin+"/api/installation" ;
-
+            window.location.href = window.location.origin+"/api/installation"+ to.href;
         }},
         // { path: "/:catchAll(.*)", beforeEnter(to){  window.location.href = window.location.origin+"/api/installation" }},
         // { path: "/:catchAll(.*)", redirect(to){  window.location.href = "http://127.0.0.1:8000/api/installation" }},
