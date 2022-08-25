@@ -26,8 +26,7 @@ class ShopController extends Controller
         if($shop !== null && User::select("access_token")->
            where("shopname",$shop)->value("access_token") !== null)
         {
-            return "You are here";
-            // return Redirect::to(env("APP_URL")."/login");
+            return Redirect::to(env("APP_URL")."/login");
         }
 
         if( !User::where("shopname",$shop)->exists() ){
