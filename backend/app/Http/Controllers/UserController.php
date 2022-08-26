@@ -45,7 +45,8 @@ class UserController extends Controller
         try {
             $shop->update([
                 "email"    => $request->email,
-                "password" => Hash::make($request->password)
+                "password" => Hash::make($request->password),
+                "username" => $request->shopname
             ]);
 
             return response()->json([
