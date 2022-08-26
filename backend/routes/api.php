@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Users
 Route::post("/login", [UserController::class,'login'])->name("login");
 Route::post("/register", [UserController::class,'register'])->name("register");
+Route::post("/current_user", [UserController::class,'current_user'])->name("current_user");
 
 
 // Install
