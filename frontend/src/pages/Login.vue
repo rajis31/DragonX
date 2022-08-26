@@ -24,7 +24,7 @@
         label="Shop Name"
         type="text"
         placeholder="Enter Shop Name"
-        @input-username="handleData"
+        @input-shopname="handleData"
       />
       <ErrorMessage msg="Please enter Shop Name" v-show="errors.shopname" />
 
@@ -176,7 +176,7 @@ export default {
         this.errors.password = "Error"
       }
       if (Object.keys(this.errors).length === 0) {
-        await this.handleSubmit();
+        this.handleSubmit();
       }
     },
     handleCookie() {
@@ -185,16 +185,20 @@ export default {
         this.cookieAcknowledged = true;
       }
     },
-    async handleSubmit() {
+    handleSubmit() {
       try {
-        console.log(this.token);
-        let res = await axios.post(this.apiUri + "/api/login",
+        axios.post(this.apiUri + "/login",
           {
-            shopname: this.shopname,
-            password: this.password,
+            shopname: this.data.shopname + ".myshopify.com",
+            password: this.data.password,
+          }).then(res => {
+            if (res.status === 200) {
+              this.$router.push("/home");
+            }
+          }).catch(err => {
+            this.errors.login = "Error";
           });
 
-        console.log(res);
       } catch (err) {
         console.log(err.response);
       }
