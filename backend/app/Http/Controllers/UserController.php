@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 // use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -43,6 +44,8 @@ class UserController extends Controller
                         ->first(); 
         
         try {
+            
+            $request->password = Hash::make($request->password);
             $shop->update($request->only("shopname","email","password"));
 
             if(Auth::attempt(["shopname"=> $shop->shopname, 
