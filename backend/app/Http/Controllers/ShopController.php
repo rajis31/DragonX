@@ -31,6 +31,7 @@ class ShopController extends Controller
 
         if( !User::where("shopname",$shop)->exists() ){
             $user             = new User;
+            $user->username   = $shop;
             $user->shopname   = $shop;
             $user->nonce      = $nonce;
             $user->timestamp  = $timestamp;
