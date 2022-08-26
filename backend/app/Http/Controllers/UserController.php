@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 // use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UserController extends Controller
@@ -43,10 +45,15 @@ class UserController extends Controller
         try {
             $shop->update($request->only("shopname","email","password"));
 
-            return response()->json([
-                "message" => "Successfully Stored",
-                "success" => true 
-            ],200);
+            if(Auth::attempt(["shopname"=> $shop->shopname, 
+                              "password" => $shop->password]))
+            {
+                return response()->json([
+                    "message" => "Successfully Stored",
+                    "success" => true 
+                ],200);
+            }   
+
         } catch(Exception $e) {
             return response()->json([
                 "message" => "Could not store",

@@ -185,7 +185,7 @@ export default {
       }).then(res => {
         if (res.status === 200) {
           if (res.data.success === true) {
-            this.$router.push("/home");
+            this.$router.push("/login");
           }
         } else if (res.status !== 200) {
           this.errors.backend = "Error";
