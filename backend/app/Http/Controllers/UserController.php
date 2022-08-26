@@ -21,8 +21,9 @@ class UserController extends Controller
             "password" => "required"
          ]);
 
-        $credentials = $request->only("shopname","password");
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt(["shopname" => $request->shopname, 
+                          "password" => $request->password] ))
+        {
             return response()->json([
                 "message" => "Login Successful",
                 "success" => "True"
