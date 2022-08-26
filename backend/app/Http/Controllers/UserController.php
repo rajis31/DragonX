@@ -44,10 +44,7 @@ class UserController extends Controller
                         ->first(); 
         
         try {
-            
-            $request->password = Hash::make($request->password);
             $shop->update([
-                "shopname" => $request->shopname,
                 "email"    => $request->email,
                 "password" => Hash::make($request->password)
             ]);

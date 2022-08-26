@@ -178,7 +178,7 @@ export default {
 
     handleSubmit() {
 
-      axios.post(this.apiUri + "/register", {
+     axios.post(this.apiUri + "/register", {
         shopname: this.data.shopname + ".myshopify.com",
         password: this.data.password,
         email: this.data.email

@@ -26,10 +26,7 @@
         placeholder="Enter Shop Name"
         @input-username="handleData"
       />
-      <ErrorMessage 
-        msg="Please enter Shop Name" 
-        v-show="errors.shopname" 
-      />
+      <ErrorMessage msg="Please enter Shop Name" v-show="errors.shopname" />
 
       <InputField
         for="password"
@@ -52,7 +49,10 @@
         Forgot Password
       </a>
       <ErrorMessage msg="Please enter a password" v-show="errors.password" />
-      <ErrorMessage msg="Shop Name or Password is wrong" v-show="errors.login" />
+      <ErrorMessage
+        msg="Shop Name or Password is wrong"
+        v-show="errors.login"
+      />
       <br />
       <button
         class="
@@ -134,11 +134,14 @@
 import InputField from "../components/InputField.vue";
 import ErrorMessage from "../components/ErrorMessage.vue";
 import axios from 'axios';
+import { getCookie, setCookie } from "../helpers/helpers";
 
 
 export default {
   created() {
     this.apiUri = this.$store.getters.getBackendURI;
+    this.cookieAcknowledged = getCookie("login_cookie_acknowledged")
+      ? true : false;
   },
   data() {
     return {
@@ -177,7 +180,10 @@ export default {
       }
     },
     handleCookie() {
-      this.cookieAcknowledged = !this.cookieAcknowledged;
+      if (!getCookie("login_cookie_acknowledged")) {
+        setCookie("login_cookie_acknowledged", "true", 30);
+        this.cookieAcknowledged = true;
+      }
     },
     async handleSubmit() {
       try {
