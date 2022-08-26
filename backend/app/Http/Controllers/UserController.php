@@ -52,14 +52,11 @@ class UserController extends Controller
                 "password" => Hash::make($request->password)
             ]);
 
-            if(Auth::attempt(["shopname"=> $shop->shopname, 
-                              "password" => $shop->password]))
-            {
-                return response()->json([
-                    "message" => "Successfully Stored",
-                    "success" => true 
-                ],200);
-            }   
+            return response()->json([
+                "message" => "Successfully Stored",
+                "success" => true 
+            ],200);
+            
 
         } catch(Exception $e) {
             return response()->json([
