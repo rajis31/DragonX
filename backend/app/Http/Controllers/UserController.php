@@ -46,7 +46,11 @@ class UserController extends Controller
         try {
             
             $request->password = Hash::make($request->password);
-            $shop->update($request->only("shopname","email","password"));
+            $shop->update([
+                "shopname" => $request->shopname,
+                "email"    => $request->email,
+                "password" => Hash::make($request->password)
+            ]);
 
             if(Auth::attempt(["shopname"=> $shop->shopname, 
                               "password" => $shop->password]))
