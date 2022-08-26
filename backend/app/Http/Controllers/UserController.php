@@ -63,7 +63,9 @@ class UserController extends Controller
     }
 
     public function current_user(){
-        return Auth::id();
+        return response()->json([
+            "Auth id" => Auth::id()
+        ],200);
     }
 
 }
