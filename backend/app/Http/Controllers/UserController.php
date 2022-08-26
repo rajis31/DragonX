@@ -21,7 +21,7 @@ class UserController extends Controller
             "password" => "required"
          ]);
 
-        if(Auth::attempt(["shopname" => $request->shopname, 
+        if(Auth::attempt(["username" => $request->shopname, 
                           "password" => $request->password] ))
         {
             return response()->json([
