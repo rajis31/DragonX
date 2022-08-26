@@ -20,10 +20,6 @@ export default {
   },
   created() {
     this.apiUri = this.$store.getters.getBackendURI;
-
-    axios.post(this.apiUri+"/current_user")
-         .then(res => console.log(res))
-         .catch(err => console.log(err));
   },
   components: {
     SideBar: SideBar,

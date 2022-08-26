@@ -186,6 +186,7 @@ export default {
       }
     },
     handleSubmit() {
+      
       try {
         axios.post(this.apiUri + "/login",
           {
@@ -193,9 +194,11 @@ export default {
             password: this.data.password,
           }).then(res => {
             if (res.status === 200) {
+              this.$store.commit("setIsLoggedIn");
               this.$router.push("/home");
             }
           }).catch(err => {
+            console.log(err);
             this.errors.login = "Error";
           });
 
