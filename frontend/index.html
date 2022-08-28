@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DragonX</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DragonX</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script src="https://unpkg.com/@shopify/app-bridge@3"></script>
+  <script src="https://unpkg.com/@shopify/app-bridge-utils@3"></script>
+  <script>
+    var AppBridge = window['app-bridge'];
+    var AppBridgeUtils = window['app-bridge-utils'];
+    var createApp = AppBridge.createApp;
+    var actions = AppBridge.actions;
+    var Redirect = actions.Redirect;
+
+    fetch("http://127.0.0.1:8000/apikey", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+      .then(data => {
+        var apiKey = data.apikey;
+        let host   = "codeinspire-shop-2.myshopify.com";
+        let redirectUri = "https://dragonx.dev-top.com/register/"+"codeinspire-shop-2";
+
+        var permissionUrl = 'https://' +
+          host +
+          '/admin' +
+          '/oauth/authorize?client_id=' +
+          apiKey +
+          '&scope=read_products,write_products,read_customers,write_customers,read_inventory,write_inventory&redirect_uri=' +
+          redirectUri;
+
+
+        // If your app is embedded inside Shopify, then use App Bridge to redirect
+        if (AppBridgeUtils.isShopifyEmbedded()) {
+          var app = createApp({
+            apiKey: apiKey,
+            host: host
+          });
+
+          Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
+          // Otherwise, redirect using the `window` object
+        } else {
+          window.location.assign(permissionUrl);
+        }
+      });
+
+  </script>
+</body>
+
 </html>

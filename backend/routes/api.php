@@ -26,3 +26,4 @@ Route::post("/register", [UserController::class,'register'])->name("register");
 // Install
 Route::get("/installation",[ShopController::class,"installation"])->name("installation");
 Route::get("/token",  [ShopController::class,"generate_token"])->name("token");
+Route::post("/apikey", [ShopController::class,'get_api_key'])->name("apikey");

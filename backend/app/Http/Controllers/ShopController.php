@@ -173,5 +173,9 @@ class ShopController extends Controller
         return true;
     }
 
+    public function get_api_key(Request $request){
+        return response()->json(["apikey"=>env("SHOPIFY_API")],200);
+    }
+
 
 }
