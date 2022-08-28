@@ -23,6 +23,7 @@
     var apiUrl         = window.location.href.search("https") > 0 ?
                          window.location.href + "/api" : 
                          window.location.href;  
+    console.log(apiUrl);
 
     fetch(apiUrl + "/apikey", {
       method: 'POST',
