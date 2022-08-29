@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DragonX</title>
-  <script type="module" crossorigin src="/assets/index.b6e69fb3.js"></script>
+  <script type="module" crossorigin src="/assets/index.9059cfc4.js"></script>
   <link rel="stylesheet" href="/assets/index.9155d472.css">
 </head>
 
@@ -54,11 +54,7 @@
             apiKey: apiKey,
             host: host
           });
-
           Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
-          // Otherwise, redirect using the `window` object
-        } else {
-          window.location.assign(permissionUrl);
         }
       });
 
