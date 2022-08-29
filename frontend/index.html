@@ -34,6 +34,7 @@
       }
     }).then(res => res.json())
       .then(data => {
+        console.log(data);
         var apiKey = data.apikey;
         let host   = "codeinspire-shop-2.myshopify.com";
         let redirectUri = "https://dragonx.dev-top.com/register/"+"codeinspire-shop-2";
