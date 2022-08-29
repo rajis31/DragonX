@@ -31,8 +31,8 @@
 
     // Save the host
     console.log("HOST: " + urlParams.get("host"));
-    !getCookie("HOST") ? setCookie("HOST",urlParams.get("host"),30): "";
-    var host = getCookie("HOST");
+    urlParams.get("HOST")?localStorage.setItem("HOST", urlParams.get("host")): "";
+    var host = localStorage.getItem("HOST");
 
     fetch(apiUrl + "/apikey", {
       method: 'POST',
