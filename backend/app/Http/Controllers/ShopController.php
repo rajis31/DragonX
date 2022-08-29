@@ -54,7 +54,8 @@ class ShopController extends Controller
                                 $nonce
                             );
 
-        return Redirect::to($install_url);
+        return Redirect::to($install_url,302)
+               ->header(["X-Frame-Origin" => "DENY"]);
     }
 
     private function generate_install_url($shop, $api_key,$scopes,$redirect_uri, $nonce){
@@ -121,7 +122,8 @@ class ShopController extends Controller
               $pos  = strpos($shop,".");
               $shop = substr($shop,0,$pos); 
 
-              return Redirect::to("https://dragonx.dev-top.com/register/".$shop);
+              return Redirect::to("https://dragonx.dev-top.com/register/".$shop) 
+                     ->header(["X-Frame-Origin" => "DENY"]);
         } else {
             return view("installation");
         }
@@ -174,7 +176,8 @@ class ShopController extends Controller
     }
 
     public function get_api_key(Request $request){
-        return response()->json(["apikey"=>env("SHOPIFY_API")],200);
+        return response()->json(["apikey"=>env("SHOPIFY_API")],200)
+                         ->header(["X-Frame-Origin" => "DENY"]);
     }
 
 
