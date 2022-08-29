@@ -13,9 +13,8 @@
   <script type="module" src="/src/main.js"></script>
   <script src="https://unpkg.com/@shopify/app-bridge@3"></script>
   <script src="https://unpkg.com/@shopify/app-bridge-utils@3"></script>
-  <script src="src/helpers/helpers.js"></script>
   <script>
-
+    import {setCookie, getCookie} from "/src/helpers/helpers.js";
     var AppBridge      = window['app-bridge'];
     var AppBridgeUtils = window['app-bridge-utils'];
     var createApp      = AppBridge.createApp;
