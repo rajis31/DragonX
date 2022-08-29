@@ -30,9 +30,10 @@
     console.log("HREF URL: " + window.location.href);
 
     // Save the host
-    console.log("HOST: " + urlParams.get("host"));
     urlParams.get("HOST")?localStorage.setItem("HOST", urlParams.get("host")): "";
     var host = localStorage.getItem("HOST");
+
+    console.log("HOST: " + host);
 
     fetch(apiUrl + "/apikey", {
       method: 'POST',
