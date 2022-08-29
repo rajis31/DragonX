@@ -15,37 +15,37 @@
   <script src="https://unpkg.com/@shopify/app-bridge-utils@3"></script>
   <script type="module">
 
-   import {getCookie, setCookie} from "./src/helpers/helpers.js";
+    import { getCookie, setCookie } from "./src/helpers/helpers.js";
 
-    var AppBridge      = window['app-bridge'];
+    var AppBridge = window['app-bridge'];
     var AppBridgeUtils = window['app-bridge-utils'];
-    var createApp      = AppBridge.createApp;
-    var actions        = AppBridge.actions;
-    var Redirect       = actions.Redirect;
-    var apiUrl         = window.location.origin.search("https") !== -1 ?
-                         window.location.origin + "/api" : 
-                         window.location.origin;  
-    var urlParams     = new URLSearchParams(window.location.href);
-    console.log("API URL: " +apiUrl);
+    var createApp = AppBridge.createApp;
+    var actions = AppBridge.actions;
+    var Redirect = actions.Redirect;
+    var apiUrl = window.location.origin.search("https") !== -1 ?
+      window.location.origin + "/api" :
+      "http://127.0.0.1:8000";
+    var urlParams = new URLSearchParams(window.location.href);
+    console.log("API URL: " + apiUrl);
     console.log("HREF URL: " + window.location.href);
 
     // Save the host
     console.log("HOST: " + urlParams.get("host"));
-    !getCookie("HOST") ? setCookie("HOST",urlParams.get("HOST"),30) : "";
-    var host          = getCookie("HOST");
+    !getCookie("HOST") ? setCookie("HOST", urlParams.get("HOST"), 30) : "";
+    var host = getCookie("HOST");
 
     fetch(apiUrl + "/apikey", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'X-Frame-Options': "Deny",
       }
     }).then(res => res.json())
       .then(data => {
-        console.log("DATA: " + data);
+        console.log("DATA:");
+        console.log(data);
         var apiKey = data.apikey;
-        let redirectUri = "https://dragonx.dev-top.com/register/"+"codeinspire-shop-2";
+        let redirectUri = "https://dragonx.dev-top.com/register/" + "codeinspire-shop-2";
 
         var permissionUrl = 'https://' +
           host +
@@ -64,7 +64,7 @@
           });
           Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
         }
-      });
+      }).catch(error => console.log(error));
 
   </script>
 </body>
