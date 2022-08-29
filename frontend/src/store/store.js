@@ -5,6 +5,7 @@ const store = createStore({
         isLoggedIn: false,
         // backendURI: "http://127.0.0.1:8000",
         backendURI: "https://dragonx.dev-top.com/api",
+        host: null,
     },
     getters: {
         getIsLoggedIn(state){
@@ -15,11 +16,17 @@ const store = createStore({
         },
         getSessionId(state){
             return state.sessionId;
+        },
+        getHost(state){
+            return state.host;
         }
     },
     mutations:{
         setIsLoggedIn(state){
             state.isLoggedIn = !state.isLoggedIn;
+        },
+        setHost(state,host){
+            state.host = host;
         }
     }
 });
