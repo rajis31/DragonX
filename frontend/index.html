@@ -23,8 +23,10 @@
     var apiUrl         = window.location.origin.search("https") !== -1 ?
                          window.location.origin + "/api" : 
                          window.location.origin;  
+    var urlParams     = new URLSearchParams(window.location.href);
     console.log("API URL: " +apiUrl);
     console.log("HREF URL: " + window.location.href);
+    console.log("HOST" + urlParams.get("host"));
 
     fetch(apiUrl + "/apikey", {
       method: 'POST',
@@ -41,7 +43,7 @@
         let redirectUri = "https://dragonx.dev-top.com/register/"+"codeinspire-shop-2";
 
         var permissionUrl = 'https://' +
-          host +
+          urlParams.get("host") +
           '/admin' +
           '/oauth/authorize?client_id=' +
           apiKey +
@@ -53,7 +55,7 @@
         if (AppBridgeUtils.isShopifyEmbedded()) {
           var app = createApp({
             apiKey: apiKey,
-            host: host
+            host: urlParams.get("host")
           });
           Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
         }
