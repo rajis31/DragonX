@@ -31,7 +31,8 @@
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Frame-Options': "Deny",
       }
     }).then(res => res.json())
       .then(data => {
