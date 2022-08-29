@@ -20,7 +20,7 @@
     var createApp      = AppBridge.createApp;
     var actions        = AppBridge.actions;
     var Redirect       = actions.Redirect;
-    var apiUrl         = window.location.origin.search("https") > 0 ?
+    var apiUrl         = window.location.origin.search("https") !== -1 ?
                          window.location.origin + "/api" : 
                          window.location.origin;  
     console.log(apiUrl);
