@@ -176,8 +176,7 @@ class ShopController extends Controller
     }
 
     public function get_api_key(Request $request){
-        return response()->json(["apikey"=>env("SHOPIFY_API")],200)
-                         ->header(["X-Frame-Origin" => "DENY"]);
+        return response()->json(["apikey"=>env("SHOPIFY_API")],200);
     }
 
 
