@@ -24,6 +24,13 @@ Route::post("/register", [UserController::class,'register'])->name("register");
 //customers
 
 // Install
-Route::get("/installation",[ShopController::class,"installation"])->name("installation");
-Route::get("/token",  [ShopController::class,"generate_token"])->name("token");
-Route::post("/apikey", [ShopController::class,'get_api_key'])->name("apikey");
+Route::get("/installation",[ShopController::class,"installation"])
+            ->name("installation");
+Route::get("/token",  [ShopController::class,"generate_token"])
+            ->name("token");
+Route::post("/apikey", [ShopController::class,'get_api_key'])
+            ->name("apikey");
+Route::get("/get_emded_host", [ShopController::class,'getHost'])
+            ->name("getEmbedHost");
+Route::post("/set_emded_host", [ShopController::class,'setHost'])
+            ->name("setEmbdedHost");

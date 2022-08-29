@@ -179,5 +179,32 @@ class ShopController extends Controller
         return response()->json(["apikey"=>env("SHOPIFY_API")],200);
     }
 
+    public function set_embed_host(Request $request){
+        /**
+         * Stores host key for embedded apps
+         */
+        $shopname    = $request->shopname;
+        $host_embed = $request->host_embed
+        ;
+        User::where("shopname", $shopname)
+            ->update("host_embded", $host_embed);    
+    
+        return response()->json(["success"=>true],200);
+    }
+
+    public function get_embed_host(Request $request){
+        /**
+         * Gets host key for embedded apps
+         */
+        $shopname    = $request->shopname;
+        ;
+        $host_embded = User::where("shopname", $shopname)
+            ->value("host_embed");    
+    
+        return response()->json(["host_embed"=>$host_embded],200);
+    }
+
+
+
 
 }

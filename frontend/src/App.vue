@@ -6,11 +6,14 @@
 </style>
 
 <script>
-import createApp from '@shopify/app-bridge';
-import { isShopifyEmbedded } from '@shopify/app-bridge-utils';
-import { Redirect } from '@shopify/app-bridge/actions';
+  import createApp from '@shopify/app-bridge';
+  import { isShopifyEmbedded } from '@shopify/app-bridge-utils';
+  import { Redirect } from '@shopify/app-bridge/actions';
+  import axios from "axios";
+
 export default {
   mounted() {
+    this.apiUrl        = this.$store.getBackendURI;
     const apiKey       = '91e985092d5546317fcd5a4dd24f4243';
     const redirectUri  = 'https://dragonx.dev-top.com/register/" + "codeinspire-shop-2"';
     const urlParams    = new URLSearchParams(window.location.href);
@@ -32,7 +35,16 @@ export default {
 
       Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
     }
-
+  },
+  data(){
+    return {
+      apiUrl: ""
+    }
+  },
+  methods:{
+      storeHost(host){
+        
+      }
   }
 }
 </script>
