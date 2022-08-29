@@ -15,7 +15,7 @@ export default {
     const redirectUri  = 'https://dragonx.dev-top.com/register/" + "codeinspire-shop-2"';
     const urlParams    = new URLSearchParams(window.location.href);
     let host           = urlParams.get("HOST") ? urlParams.get("HOST") :
-                         this.$store.getters.getHost();
+                         this.$store.getters.getHost;
     this.$store.mutations.setHost(host);
 
     const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}
