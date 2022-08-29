@@ -20,9 +20,9 @@
     var createApp      = AppBridge.createApp;
     var actions        = AppBridge.actions;
     var Redirect       = actions.Redirect;
-    var apiUrl         = window.location.href.search("https") > 0 ?
-                         window.location.href + "/api" : 
-                         window.location.href;  
+    var apiUrl         = window.location.origin.search("https") > 0 ?
+                         window.location.origin + "/api" : 
+                         window.location.origin;  
     console.log(apiUrl);
 
     fetch(apiUrl + "/apikey", {
