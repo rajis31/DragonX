@@ -16,7 +16,7 @@ export default {
     const urlParams    = new URLSearchParams(window.location.href);
     let host           = urlParams.get("HOST") ? urlParams.get("HOST") :
                          this.$store.getters.getHost;
-    this.$store.mutations.setHost(host);
+    this.$store.commit("setHost",host);
 
     const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}
                            &scope=read_products,write_products,read_customers,write_customers,read_inventory,write_inventory
