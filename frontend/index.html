@@ -31,7 +31,7 @@
 
     // Save the host
     console.log("HOST: " + urlParams.get("host"));
-    !getCookie("HOST") ? setCookie("HOST", urlParams.get("HOST"), 30) : "";
+    !getCookie("HOST") ? setCookie("HOST",urlParams.get("host"),30): "";
     var host = getCookie("HOST");
 
     fetch(apiUrl + "/apikey", {
