@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DragonX</title>
-  <script type="module" crossorigin src="/assets/index.9059cfc4.js"></script>
+  <script type="module" crossorigin src="/assets/index.c55c60ea.js"></script>
   <link rel="stylesheet" href="/assets/index.9155d472.css">
 </head>
 
@@ -15,58 +15,7 @@
   
   <script src="https://unpkg.com/@shopify/app-bridge@3"></script>
   <script src="https://unpkg.com/@shopify/app-bridge-utils@3"></script>
-  <script>
-    import {setCookie, getCookie} from "/src/helpers/helpers.js";
-    var AppBridge      = window['app-bridge'];
-    var AppBridgeUtils = window['app-bridge-utils'];
-    var createApp      = AppBridge.createApp;
-    var actions        = AppBridge.actions;
-    var Redirect       = actions.Redirect;
-    var apiUrl         = window.location.origin.search("https") !== -1 ?
-                         window.location.origin + "/api" : 
-                         window.location.origin;  
-    var urlParams     = new URLSearchParams(window.location.href);
-    console.log("API URL: " +apiUrl);
-    console.log("HREF URL: " + window.location.href);
-
-    // Save the host
-    console.log("HOST: " + urlParams.get("host"));
-    !getCookie("HOST") ? setCookie("HOST",urlParams.get("HOST"),30) : "";
-    var host          = getCookie("HOST");
-
-    fetch(apiUrl + "/apikey", {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-Frame-Options': "Deny",
-      }
-    }).then(res => res.json())
-      .then(data => {
-        console.log("DATA: " + data);
-        var apiKey = data.apikey;
-        let redirectUri = "https://dragonx.dev-top.com/register/"+"codeinspire-shop-2";
-
-        var permissionUrl = 'https://' +
-          host +
-          '/admin' +
-          '/oauth/authorize?client_id=' +
-          apiKey +
-          '&scope=read_products,write_products,read_customers,write_customers,read_inventory,write_inventory&redirect_uri=' +
-          redirectUri;
-
-
-        // If your app is embedded inside Shopify, then use App Bridge to redirect
-        if (AppBridgeUtils.isShopifyEmbedded()) {
-          var app = createApp({
-            apiKey: apiKey,
-            host: host
-          });
-          Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
-        }
-      });
-
-  </script>
+  
 </body>
 
 </html>
