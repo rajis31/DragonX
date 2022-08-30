@@ -198,10 +198,10 @@ class ShopController extends Controller
          */
         $shopname    = $request->shopname;
         ;
-        $host_embded = User::where("shopname", $shopname)
+        $host_embed= User::where("shopname", $shopname)
             ->value("host_embed");    
     
-        return response()->json(["host_embed"=>$host_embded],200);
+        return response()->json(["host_embed"=>$host_embed],200);
     }
 
 
